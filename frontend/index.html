@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FestPass 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    input, button { padding: 0.6rem; margin: 0.25rem 0; }
+    input { width: 95%; }
+  </style>
+</head>
+<body>
+  <h1>FestPass 2026</h1>
+  <p id="status">Loading...</p>
+
+  <form id="form">
+    <input id="name" placeholder="Your name" required>
+    <input id="event" placeholder="Event name" required>
+    <button type="submit">Register</button>
+  </form>
+
+  <h2>Registrations</h2>
+  <ul id="list"></ul>
+
+  <script>
+    async function api(path, options = {}) {
+      const response = await fetch(`/api/${path}`, options);
+      if (!response.ok) throw new Error(await response.text());
+      return response.json();
+    }
+
+    async function refresh() {
+      const status = document.getElementById("status");
+      try {
+        const health = await api("health");
+        status.textContent =
+          `REGNO ${health.regno} | backend ${health.version} on ${health.container} | database ${health.database ? "connected" : "not connected"}`;
+
+        const rows = await api("registrations");
+        document.getElementById("list").replaceChildren(
+          ...rows.map(r => {
+            const li = document.createElement("li");
+            li.textContent = `#${r.id} ${r.name} (${r.event})`;
+            return li;
+          })
+        );
+      } catch (error) {
+        status.textContent = "Backend not reachable: " + error.message;
+      }
+    }
+
+    document.getElementById("form").addEventListener("submit", async e => {
+      e.preventDefault();
+      try {
+        await api("registrations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: document.getElementById("name").value,
+            event: document.getElementById("event").value
+          })
+        });
+        document.getElementById("name").value = "";
+        document.getElementById("event").value = "";
+        await refresh();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
