@@ -27,9 +27,21 @@ Reports: `reports/trivy-before.txt` and `reports/trivy-after.txt`.
   `sha256:b833fc00923bebba8e4e6ab80e41fac2584f7bd8b6abcd09681dae5a8c40a74e`.
 - Compose uses `tanushatyagi/fest-backend:1.0.0`; its registry pull and health
   endpoint were verified on port 140 with the existing registrations intact.
-- Stage 5 signing and unsigned-release rejection are pending at this point in
-  the commit history.
+
+## Signing and verification
+
+- `1.0.0` was signed by digest with Cosign v3.1.4 and verified with `cosign.pub`.
+- Docker Hub `1.0.1` was pushed unsigned with digest
+  `sha256:53d50b9f9466fe85b07a2cb1cc4c8b2244df2c1199936e3f01c533c49cbcd49a`.
+- `cosign verify` rejected the unsigned `1.0.1` digest with exit code 10 and
+  `no signatures found`.
+- `cosign.key` is password-protected, has mode 600, and is ignored by Git.
+  Only `cosign.pub` is included in this repository.
 
 ## Incomplete steps
 
-- Capture the required unedited terminal and browser evidence in `screenshots/`.
+- Capture the required genuine, unedited full-window evidence and add it to
+  `screenshots/`. This environment cannot save screenshots of the user's
+  terminal or browser with their full window and address bar visible.
+- Create the public GitHub repository `202401100100260-docker-assessment`,
+  configure its remote, and push after evidence is added and reviewed.
