@@ -40,12 +40,12 @@ Reports: `reports/trivy-before.txt` and `reports/trivy-after.txt`.
 
 ## Incomplete steps
 
-- Capture and add the genuine, unedited evidence files `S1-1.png` through
-  `S5-4.png` in `screenshots/` (the assessment permits combining codes when
-  all evidence is visible). This environment cannot save screenshots of the
-  user's full terminal or browser window.
-- Push the local stage-wise commits after the evidence files are reviewed.
+- Capture and add genuine, unedited evidence files for `S1-1`, `S1-2`, `S1-3`,
+  `S2-1` through `S2-4`, `S3-1` through `S3-3`, `S4-1` through `S4-3`, and
+  `S5-1` through `S5-4` in `screenshots/` (the assessment permits combining
+  codes when all evidence is visible). This environment cannot save
+  screenshots of the user's full terminal or browser window.
 
 The public GitHub repository exists at
 `https://github.com/Tanusha-tyagi/202401100100260-docker-assessment`, and its
-`origin` remote is configured.
+`origin` remote is configured. The stage-wise commits are pushed to `main`.
