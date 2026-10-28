@@ -40,8 +40,12 @@ Reports: `reports/trivy-before.txt` and `reports/trivy-after.txt`.
 
 ## Incomplete steps
 
-- Capture the required genuine, unedited full-window evidence and add it to
-  `screenshots/`. This environment cannot save screenshots of the user's
-  terminal or browser with their full window and address bar visible.
-- Create the public GitHub repository `202401100100260-docker-assessment`,
-  configure its remote, and push after evidence is added and reviewed.
+- Capture and add the genuine, unedited evidence files `S1-1.png` through
+  `S5-4.png` in `screenshots/` (the assessment permits combining codes when
+  all evidence is visible). This environment cannot save screenshots of the
+  user's full terminal or browser window.
+- Push the local stage-wise commits after the evidence files are reviewed.
+
+The public GitHub repository exists at
+`https://github.com/Tanusha-tyagi/202401100100260-docker-assessment`, and its
+`origin` remote is configured.
